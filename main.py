@@ -48,15 +48,11 @@ class Example(QWidget):
             "background-color: {}".format('#00c8ff'))
         self.btn.setMaximumSize(140000, 140000)
         u.addWidget(self.btn, 0, 0)
-    
-        '''self.name_input = QLineEdit(self)
-        self.name_input.setText(str(a)[2:-3])
-        self.name_input.setDisabled(True)
-        self.name_input.setFont(QFont("Times", 18))
-        self.name_input.setStyleSheet(
-            "background-color: {}".format('#fff833'))
-        self.name_input.setMaximumSize(140000, 140000)
-        u.addWidget(self.name_input, 0, 0, 1, 3)'''
+
+        self.combo = QComboBox(self)
+        self.combo.addItems(["txt", "pdf",
+                        "docx"])
+        u.addWidget(self.combo)
         
     def k(self):
         self.cwd = os.getcwd()
@@ -65,11 +61,7 @@ class Example(QWidget):
                                     self.cwd, 
                                     "All Files (*);;Text Files (*.txt)")
         print(fileName_choose)
-        fileName_choose1, filetype = QFileDialog.getOpenFileName(self,  
-                                    "Выбрать файл",  
-                                    self.cwd, 
-                                    "All Files (*);;Text Files (*.txt)")
-        print(fileName_choose1)
+        print(self.combo.currentText())
 
 if __name__ == "__main__":
     app = Qt.QApplication([])
