@@ -74,8 +74,17 @@ class Example(QWidget):
                                     "Выбрать файл",  
                                     self.cwd, 
                                     "All Files (*);;Text Files (*.txt)")
-        print(fileName_choose)
-        print(self.combo.currentText())
+        self.ftp = fileName_choose.split('.')[-1]
+        self.f = fileName_choose
+        self.tp = self.combo.currentText()
+
+        if self.ftp == 'pdf':
+            if self.tp == 'txt':
+                save_pdf_in_txt(self.f)
+                print('ok')
+            elif self.tp == 'docx':
+                save_pdf_in_word(self.f)
+                print('ok')
 
 if __name__ == "__main__":
     app = Qt.QApplication([])
