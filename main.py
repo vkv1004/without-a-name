@@ -77,13 +77,18 @@ class Example(QWidget):
         self.ftp = fileName_choose.split('.')[-1]
         self.f = fileName_choose
         self.tp = self.combo.currentText()
+        self.nm = '.'.join((self.f.split('/')[-1]).split('.')[:-1])
 
         if self.ftp == 'pdf':
             if self.tp == 'txt':
-                save_pdf_in_txt(self.f)
+                save_pdf_in_txt(self.f, self.nm)
                 print('ok')
             elif self.tp == 'docx':
-                save_pdf_in_word(self.f)
+                save_pdf_in_word(self.f, self.nm)
+                print('ok')
+        if self.ftp == 'txt':
+            if self.tp == 'pdf':
+                save_txt_in_pdf(self.f, self.nm)
                 print('ok')
 
 if __name__ == "__main__":
