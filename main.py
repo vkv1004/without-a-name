@@ -10,6 +10,7 @@ from PyQt5 import QtCore
 
 from pdfminer.high_level import extract_text
 import docx
+from fpdf import FPDF
 
 def save_pdf_in_txt(path):
     txt = extract_text(path)
@@ -32,6 +33,19 @@ def save_pdf_in_word(path):
     par1.add_run(txt)
 
     doc.save('sample.docx')
+
+def save_txt_in_pdf(path):
+    pdf = FPDF()
+    pdf.set_font("Arial", size=12)
+    pdf.add_page()
+    with open(path, 'r') as file:
+        for line in file:
+            txt = line
+            print(txt)
+            pdf.cell(200, 10, txt=txt, ln=1, align="C")
+        file.close()
+
+    pdf.output('sample.pdf')
 
 class Example(QWidget):
     def __init__(self):
