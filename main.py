@@ -15,8 +15,6 @@ from fpdf import FPDF
 def save_pdf_in_txt(path, name_save):
     txt = extract_text(path)
 
-    print(txt)
-
     with open(f'{name_save}.txt', 'w+') as file:
         file.write(txt)
         file.close()
@@ -24,8 +22,6 @@ def save_pdf_in_txt(path, name_save):
 
 def save_pdf_in_word(path, name_save):
     txt = extract_text(path)
-
-    print(txt)
 
     doc = docx.Document()
     par1 = doc.add_paragraph('Импортированно из pdf')
@@ -42,7 +38,6 @@ def save_txt_in_pdf(path, name_save):
     with open(path, 'r') as file:
         for line in file:
             txt = line
-            print(txt)
             pdf.cell(200, 10, txt=txt, ln=1, align="C")
         file.close()
 
