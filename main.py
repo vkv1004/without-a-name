@@ -12,17 +12,17 @@ from pdfminer.high_level import extract_text
 import docx
 from fpdf import FPDF
 
-def save_pdf_in_txt(path):
+def save_pdf_in_txt(path, name_save):
     txt = extract_text(path)
 
     print(txt)
 
-    with open('file.txt', 'w+') as file:
+    with open(f'{name_save}.txt', 'w+') as file:
         file.write(txt)
         file.close()
 
 
-def save_pdf_in_word(path):
+def save_pdf_in_word(path, name_save):
     txt = extract_text(path)
 
     print(txt)
@@ -32,9 +32,10 @@ def save_pdf_in_word(path):
 
     par1.add_run(txt)
 
-    doc.save('sample.docx')
+    doc.save(f'{name_save}.docx')
 
-def save_txt_in_pdf(path):
+
+def save_txt_in_pdf(path, name_save):
     pdf = FPDF()
     pdf.set_font("Arial", size=12)
     pdf.add_page()
@@ -45,7 +46,7 @@ def save_txt_in_pdf(path):
             pdf.cell(200, 10, txt=txt, ln=1, align="C")
         file.close()
 
-    pdf.output('sample.pdf')
+    pdf.output(f'{name_save}.pdf')
 
 class Example(QWidget):
     def __init__(self):
